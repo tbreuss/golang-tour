@@ -1,6 +1,6 @@
 # Golang Tour
 
-The official [Tour of Go](https://go.dev/tour) as a single Markdown file, as of January 2025.
+The official [tour of Go](https://go.dev/tour) as a single Markdown file, as of January 2025, including minor additions.
 
 ## Basics
 
@@ -1451,6 +1451,8 @@ The choice of image is up to you. Interesting functions include `(x+y)/2, x*y`, 
 
 (Use `uint8(intValue)` to convert between types.)
 
+Exercise:
+
 ~~~go
 package main
 
@@ -1463,6 +1465,33 @@ func main() {
 	pic.Show(Pic)
 }
 ~~~
+
+Possible solution:
+
+~~~go
+package main
+
+import "golang.org/x/tour/pic"
+
+func Pic(dx, dy int) [][]uint8 {
+    p := make([][]uint8, dy)
+    for y := range p {
+        p[y] = make([]uint8, dx)
+        for x := range p[y] {
+	        p[y][x] = uint8((x+y)/2)
+        }
+    }
+    return p
+}
+
+func main() {
+	pic.Show(Pic)
+}
+~~~
+
+Output:
+
+A generated blue image.
 
 #### Maps
 
@@ -1640,6 +1669,49 @@ func main() {
 	wc.Test(WordCount)
 }
 ~~~
+
+Possible solution:
+
+~~~go
+package main
+
+import (
+	"golang.org/x/tour/wc"
+	"strings"
+)
+
+func WordCount(s string) map[string]int {
+	m := make(map[string]int)		
+	for _, field := range strings.Fields(s) {
+		_, ok := m[field]
+		if ok {
+			m[field] += 1
+		} else {
+			m[field] = 1
+		}		
+	}
+	return m
+}
+
+func main() {
+	wc.Test(WordCount)
+}
+~~~
+
+Output:
+
+	PASS
+	f("I am learning Go!") = 
+	map[string]int{"Go!":1, "I":1, "am":1, "learning":1}
+	PASS
+	f("The quick brown fox jumped over the lazy dog.") = 
+	map[string]int{"The":1, "brown":1, "dog.":1, "fox":1, "jumped":1, "lazy":1, "over":1, "quick":1, "the":1}
+	PASS
+	f("I ate a donut. Then I ate another donut.") = 
+	map[string]int{"I":2, "Then":1, "a":1, "another":1, "ate":2, "donut.":2}
+	PASS
+	f("A man a plan a canal panama.") = 
+	map[string]int{"A":1, "a":2, "canal":1, "man":1, "panama.":1, "plan":1}
 
 #### Function values
 
