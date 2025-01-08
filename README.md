@@ -4,9 +4,9 @@ The official [Tour of Go](https://go.dev/tour) as a Single Markdown File.
 
 ## Basics
 
-<!-- Packages, variables, and functions. -->
+### Packages, variables, and functions
 
-### Packages
+#### Packages
 
 Every Go program is made up of packages.
 
@@ -29,7 +29,7 @@ func main() {
 }
 ~~~
 
-### Imports
+#### Imports
 
 This code groups the imports into a parenthesized, "factored" import statement.
 
@@ -55,7 +55,7 @@ func main() {
 }
 ~~~
 
-### Exported names
+#### Exported names
 
 In Go, a name is exported if it begins with a capital letter. For example, `Pizza` is an exported name, as is `Pi`, which is exported from the `math` package.
 
@@ -84,7 +84,7 @@ func main() {
 // Go build failed.
 ~~~
 
-### Functions
+#### Functions
 
 A function can take zero or more arguments.
 
@@ -108,7 +108,7 @@ func main() {
 }
 ~~~
 
-### Functions continued
+#### Functions continued
 
 When two or more consecutive named function parameters share a type, you can omit the type from all but the last.
 
@@ -140,7 +140,7 @@ func main() {
 }
 ~~~
 
-### Multiple results
+#### Multiple results
 
 A function can return any number of results.
 
@@ -161,7 +161,7 @@ func main() {
 }
 ~~~
 
-### Named return values
+#### Named return values
 
 Go's return values may be named. If so, they are treated as variables defined at the top of the function.
 
@@ -187,7 +187,7 @@ func main() {
 }
 ~~~
 
-### Variables
+#### Variables
 
 The `var` statement declares a list of variables; as in function argument lists, the type is last.
 
@@ -206,7 +206,7 @@ func main() {
 }
 ~~~
 
-### Variables with initializers
+#### Variables with initializers
 
 A var declaration can include initializers, one per variable.
 
@@ -225,7 +225,7 @@ func main() {
 }
 ~~~
 
-### Short variable declarations
+#### Short variable declarations
 
 Inside a function, the `:=` short assignment statement can be used in place of a `var` declaration with implicit type.
 
@@ -245,7 +245,7 @@ func main() {
 }
 ~~~
 
-### Basic types
+#### Basic types
 
 Go's basic types are
 
@@ -292,7 +292,7 @@ func main() {
 }
 ~~~
 
-### Zero values
+#### Zero values
 
 Variables declared without an explicit initial value are given their *zero value*.
 
@@ -316,7 +316,7 @@ func main() {
 }
 ~~~
 
-### Type conversions
+#### Type conversions
 
 The expression `T(v)` converts the value `v` to the type `T`.
 
@@ -354,7 +354,7 @@ func main() {
 }
 ~~~
 
-### Type inference
+#### Type inference
 
 When declaring a variable without specifying an explicit type (either by using the `:=` syntax or `var =` expression syntax), the variable's type is inferred from the value on the right hand side.
 
@@ -386,7 +386,7 @@ func main() {
 }
 ~~~
 
-### Constants
+#### Constants
 
 Constants are declared like variables, but with the `const` keyword.
 
@@ -411,7 +411,7 @@ func main() {
 }
 ~~~
 
-### Numeric Constants
+#### Numeric Constants
 Numeric constants are high-precision *values*.
 
 An untyped constant takes the type needed by its context.
@@ -445,9 +445,9 @@ func main() {
 }
 ~~~
 
-<!-- Flow control statements: for, if, else, switch and defer -->
+### Flow control statements: for, if, else, switch and defer
 
-### For
+#### For
 
 Go has only one looping construct, the `for` loop.
 
@@ -477,7 +477,7 @@ func main() {
 }
 ~~~
 
-### For continued
+#### For continued
 
 The init and post statements are optional.
 
@@ -495,7 +495,7 @@ func main() {
 }
 ~~~
 
-### For is Go's "while"
+#### For is Go's "while"
 
 At that point you can drop the semicolons: C's `while` is spelled `for` in Go.
 
@@ -513,7 +513,7 @@ func main() {
 }
 ~~~
 
-### Forever
+#### Forever
 
 If you omit the loop condition it loops forever, so an infinite loop is compactly expressed.
 
@@ -526,7 +526,7 @@ func main() {
 }
 ~~~
 
-### If
+#### If
 
 Go's `if` statements are like its `for` loops; the expression need not be surrounded by parentheses `( )` but the braces `{ }` are required.
 
@@ -550,7 +550,7 @@ func main() {
 }
 ~~~
 
-### If with a short statement
+#### If with a short statement
 
 Like `for`, the `if` statement can start with a short statement to execute before the condition.
 
@@ -581,7 +581,7 @@ func main() {
 }
 ~~~
 
-### If and else
+#### If and else
 
 Variables declared inside an `if` short statement are also available inside any of the `else` blocks.
 
@@ -613,7 +613,7 @@ func main() {
 }
 ~~~
 
-### Exercise: Loops and Functions
+#### Exercise: Loops and Functions
 
 As a way to play with functions and loops, let's implement a square root function: given a number x, we want to find the number z for which z² is most nearly x.
 
@@ -649,7 +649,7 @@ func main() {
 }
 ~~~
 
-### Switch
+#### Switch
 
 A `switch` statement is a shorter way to write a sequence of `if - else` statements. It runs the first case whose value is equal to the condition expression.
 
@@ -678,7 +678,7 @@ func main() {
 }
 ~~~
 
-### Switch evaluation order
+#### Switch evaluation order
 
 Switch cases evaluate cases from top to bottom, stopping when a case succeeds.
 
@@ -717,7 +717,7 @@ func main() {
 }
 ~~~
 
-### Switch with no condition
+#### Switch with no condition
 
 Switch without a condition is the same as `switch true`.
 
@@ -744,7 +744,7 @@ func main() {
 }
 ~~~
 
-### Defer
+#### Defer
 
 A `defer` statement defers the execution of a function until the surrounding function returns.
 
@@ -762,7 +762,7 @@ func main() {
 }
 ~~~
 
-### Stacking defers
+#### Stacking defers
 
 Deferred function calls are pushed onto a stack. When a function returns, its deferred calls are executed in last-in-first-out order.
 
