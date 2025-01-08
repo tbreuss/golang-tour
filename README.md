@@ -1,6 +1,6 @@
 # Golang Tour
 
-The official [tour of Go](https://go.dev/tour) as a single Markdown file, as of January 2025, including minor additions.
+The official [tour of Go](https://go.dev/tour) as a single Markdown file, as of January 2025, including minor additions and solutions to exercises.
 
 ## Basics
 
