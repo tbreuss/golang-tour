@@ -635,6 +635,8 @@ Next, change the loop condition to stop once the value has stopped changing (or 
 
 (Note: If you are interested in the details of the algorithm, the z² − x above is how far away z² is from where it needs to be (x), and the division by 2z is the derivative of z², to scale how much we adjust z by how quickly z² is changing. This general approach is called [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method). It works well for many functions but especially well for square root.)
 
+Exercise:
+
 ~~~go
 package main
 
@@ -649,6 +651,45 @@ func main() {
 	fmt.Println(Sqrt(2))
 }
 ~~~
+
+Possible solution (part one):
+
+~~~go
+package main
+
+import (
+	"fmt"
+)
+
+func Sqrt(x float64) float64 {
+	z := float64(1)
+	fmt.Printf("Sqrt approximation of %v:\n", x)
+	for i := 0; i<10; i++ {
+		z -= (z*z - x) / (2*z)
+		fmt.Printf("Iteration %v, value = %v\n", i+1, z)
+	}
+	return z
+}
+
+func main() {
+	fmt.Println(Sqrt(2))
+}
+~~~
+
+Output (part one):
+
+	Sqrt approximation of 2:
+	Iteration 1, value = 1.5
+	Iteration 2, value = 1.4166666666666667
+	Iteration 3, value = 1.4142156862745099
+	Iteration 4, value = 1.4142135623746899
+	Iteration 5, value = 1.4142135623730951
+	Iteration 6, value = 1.414213562373095
+	Iteration 7, value = 1.4142135623730951
+	Iteration 8, value = 1.414213562373095
+	Iteration 9, value = 1.4142135623730951
+	Iteration 10, value = 1.414213562373095
+	1.414213562373095
 
 #### Switch
 
