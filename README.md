@@ -2771,3 +2771,87 @@ func main() {
 Output:
 
 	at 2009-11-10 23:00:00 +0000 UTC m=+0.000000001, it didn't work
+
+#### Exercise: Errors
+
+Copy your `Sqrt` function from the earlier exercise and modify it to return an `error` value.
+
+`Sqrt` should return a non-nil error value when given a negative number, as it doesn't support complex numbers.
+
+Create a new type
+
+	type ErrNegativeSqrt float64
+
+and make it an `error` by giving it a
+
+	func (e ErrNegativeSqrt) Error() string
+
+method such that `ErrNegativeSqrt(-2).Error()` returns `"cannot Sqrt negative number: -2"`.
+
+**Note**: A call to `fmt.Sprint(e)` inside the `Error` method will send the program into an infinite loop. You can avoid this by converting `e` first: `fmt.Sprint(float64(e))`. Why?
+
+Change your `Sqrt` function to return an `ErrNegativeSqrt` value when given a negative number.
+
+Exercise:
+
+~~~go
+package main
+
+import (
+	"fmt"
+)
+
+func Sqrt(x float64) (float64, error) {
+	return 0, nil
+}
+
+func main() {
+	fmt.Println(Sqrt(2))
+	fmt.Println(Sqrt(-2))
+}
+~~~
+
+Possible solution:
+
+~~~go
+package main
+
+import (
+	"fmt"
+)
+
+type ErrNegativeSqrt float64
+
+func (e ErrNegativeSqrt) Error() string {
+	return fmt.Sprintf("can not Sqrt negative number:%v", float64(e))
+}
+
+func Sqrt(x float64) (float64, error) {
+	if x < 0 {
+		return 0, ErrNegativeSqrt(x)
+	}
+	z := float64(1.0)
+	for i := 0; i<10; i++ {
+		z -= (z*z - x) / (2*z)
+	}
+	return z, nil
+}
+
+func main() {
+	fmt.Println(Sqrt(2))
+	fmt.Println(Sqrt(-2))
+	
+	f1, ok := Sqrt(2)
+	fmt.Println(f1, ok)
+
+	f2, ok := Sqrt(-2)
+	fmt.Println(f2, ok)	
+}
+~~~
+
+Output:
+
+	1.414213562373095 <nil>
+	0 can not Sqrt negative number:-2
+	1.414213562373095 <nil>
+	0 can not Sqrt negative number:-2
